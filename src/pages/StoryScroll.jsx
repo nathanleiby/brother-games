@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { gamesData } from "../data/gamesData";
+import EasterEggs from "../components/EasterEggs";
 
 const StoryScroll = ({ setCurrentMode }) => {
   const navigate = useNavigate();
@@ -93,6 +94,9 @@ const StoryScroll = ({ setCurrentMode }) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true, margin: "-100px" }}
         >
+          {/* Easter Egg */}
+          <EasterEggs gameId={game.id} />
+          
           <div className="chapter-content">
             <motion.div
               className="chapter-header"

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { gamesData } from "../data/gamesData";
+import EasterEggs from "../components/EasterEggs";
 
 const GameDetail = ({ setCurrentMode }) => {
   const { gameId } = useParams();
@@ -34,6 +35,8 @@ const GameDetail = ({ setCurrentMode }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Easter Egg */}
+      <EasterEggs gameId={game.id} />
       {/* Navigation */}
       <div className="detail-navigation">
         <motion.button

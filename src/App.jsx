@@ -13,9 +13,20 @@ import Navigation from "./components/Navigation";
 import StoryScroll from "./pages/StoryScroll";
 import GameShelf from "./pages/GameShelf";
 import GameDetail from "./pages/GameDetail";
+import BrotherhoodStats from "./components/BrotherhoodStats";
+
+// Hooks
+import { useKonamiCode } from "./hooks/useKonamiCode";
 
 function App() {
   const [currentMode, setCurrentMode] = useState("story");
+  const [showBrotherhoodStats, setShowBrotherhoodStats] = useState(false);
+  const konamiUnlocked = useKonamiCode();
+
+  // Show Brotherhood Stats when Konami code is entered
+  if (konamiUnlocked && !showBrotherhoodStats) {
+    setShowBrotherhoodStats(true);
+  }
 
   return (
     <Router>
@@ -66,6 +77,12 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>
+
+        {/* Brotherhood Stats Modal */}
+        <BrotherhoodStats
+          isVisible={showBrotherhoodStats}
+          onClose={() => setShowBrotherhoodStats(false)}
+        />
       </div>
     </Router>
   );

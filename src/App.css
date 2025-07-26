@@ -943,3 +943,353 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #00bcd4, #64ffda);
 }
+
+/* Brotherhood Stats Modal */
+.brotherhood-stats-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.brotherhood-stats {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #64ffda;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(100, 255, 218, 0.3);
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.3);
+  padding-bottom: 1rem;
+}
+
+.stats-header h2 {
+  color: #64ffda;
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.close-btn {
+  background: none;
+  border: 2px solid #64ffda;
+  color: #64ffda;
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(100, 255, 218, 0.1);
+  transform: scale(1.1);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(100, 255, 218, 0.3);
+  transform: translateY(-2px);
+}
+
+.stat-item.highlight {
+  border-color: #64ffda;
+  background: rgba(100, 255, 218, 0.1);
+}
+
+.stat-item.special {
+  border-color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #64ffda;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.stat-item.special .stat-number {
+  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.special-achievements {
+  background: rgba(100, 255, 218, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.achievement {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.achievement:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.achievement-label {
+  color: #64ffda;
+  font-weight: 600;
+}
+
+.achievement-value {
+  color: #e8e8e8;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.gaming-quote {
+  background: rgba(0, 188, 212, 0.1);
+  border: 1px solid rgba(0, 188, 212, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gaming-quote p {
+  color: #e8e8e8;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.easter-egg-note {
+  text-align: center;
+  color: #8892b0;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.easter-egg-note p {
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .brotherhood-stats {
+    margin: 1rem;
+    padding: 1.5rem;
+    max-height: 95vh;
+  }
+  
+  .stats-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .stat-item {
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .achievement {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Easter Eggs */
+.easter-egg {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 100;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.easter-egg:hover {
+  filter: drop-shadow(0 0 10px #64ffda);
+}
+
+.easter-egg-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.easter-egg-modal {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 2px solid #64ffda;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(100, 255, 218, 0.3);
+}
+
+.modal-header {
+  background: rgba(100, 255, 218, 0.1);
+  border-bottom: 1px solid rgba(100, 255, 218, 0.3);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  color: #64ffda;
+  margin: 0;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.modal-header button {
+  background: none;
+  border: 2px solid #64ffda;
+  color: #64ffda;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-header button:hover {
+  background: rgba(100, 255, 218, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.modal-content p {
+  color: #e8e8e8;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  white-space: pre-line;
+}
+
+.modal-footer {
+  background: rgba(0, 188, 212, 0.1);
+  border-top: 1px solid rgba(0, 188, 212, 0.3);
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.modal-footer p {
+  color: #00bcd4;
+  margin: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Game cards with easter eggs */
+.game-card {
+  position: relative;
+}
+
+.game-chapter {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .easter-egg {
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .easter-egg-modal {
+    margin: 1rem;
+    max-height: 90vh;
+  }
+  
+  .modal-header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+    max-height: 60vh;
+  }
+}
