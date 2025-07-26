@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Our Gaming Journey - Brothers Through Time</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,width=device-width" />
+    <meta
+      name="description"
+      content="A timeline of all the games we've played together as brothers"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdn.knightlab.com/libs/timeline3/latest/css/timeline.css"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .header {
+        text-align: center;
+        padding: 20px;
+        color: white;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .header p {
+        margin: 10px 0 0 0;
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+
+      #timeline-embed {
+        height: calc(100vh - 120px);
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: white;
+        font-size: 1.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🎮 Our Gaming Journey 🎮</h1>
+      <p>A timeline of all the games we've conquered together as brothers</p>
+    </div>
+
+    <div id="timeline-embed">
+      <div id="timeline"></div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="//cdn.knightlab.com/libs/timeline3/latest/js/timeline-min.js"
+    ></script>
+    <script>
+      // Gaming timeline data
+      const timelineData = {
+        title: {
+          media: {
+            url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=400&fit=crop",
+            caption: "Three brothers, countless adventures",
+            credit: "Gaming memories forever",
+          },
+          text: {
+            headline: "Our Gaming Journey",
+            text: "<p>From our first shared controller to epic multiplayer battles, this timeline captures every game, every victory, and every moment we've spent gaming together as brothers. Each entry represents not just a game, but memories of laughter, competition, and the unbreakable bond we share through gaming.</p>",
+          },
+        },
+        events: [
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
+              caption: "Our first gaming console together",
+              credit: "The beginning of everything",
+            },
+            start_date: {
+              year: "1995",
+            },
+            text: {
+              headline: "Super Mario Bros. - The Beginning",
+              text: "<p>Our first shared gaming experience! Taking turns on the NES, we learned the art of cooperative gaming. Who could forget the arguments over who got to be Mario vs Luigi?</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              caption: "GoldenEye 007 multiplayer nights",
+              credit: "Bond, James Bond",
+            },
+            start_date: {
+              year: "1997",
+            },
+            text: {
+              headline: "GoldenEye 007 - Multiplayer Madness",
+              text: "<p>Our first true multiplayer experience! Split-screen battles that lasted for hours. The living room became our battlefield, and 'No Oddjob' was the sacred rule.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              caption: "Pokemon trading card battles",
+              credit: "Gotta catch 'em all!",
+            },
+            start_date: {
+              year: "1999",
+            },
+            text: {
+              headline: "Pokemon Trading Card Game",
+              text: "<p>Not just video games! We spent countless hours trading Pokemon cards, building decks, and battling each other. The rare card trades were always the most dramatic.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              caption: "Halo LAN parties",
+              credit: "Master Chief would be proud",
+            },
+            start_date: {
+              year: "2001",
+            },
+            text: {
+              headline: "Halo: Combat Evolved",
+              text: "<p>Our introduction to the Xbox! LAN parties became our weekend ritual. Blood Gulch was our favorite map, and the Warthog became our chariot of destruction.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              caption: "Mario Kart Double Dash chaos",
+              credit: "Blue shell trauma",
+            },
+            start_date: {
+              year: "2003",
+            },
+            text: {
+              headline: "Mario Kart: Double Dash!!",
+              text: "<p>The ultimate test of brotherly love and betrayal! Blue shells became the great equalizer, and Rainbow Road was our nemesis. Double-dash mechanics made teamwork essential.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              caption: "World of Warcraft adventures",
+              credit: "For the Horde! (or Alliance...)",
+            },
+            start_date: {
+              year: "2004",
+            },
+            text: {
+              headline: "World of Warcraft",
+              text: "<p>Our first MMO experience! We formed our own guild, raided dungeons together, and spent way too much time grinding for epic loot. The late-night raids were legendary.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
+              caption: "Call of Duty Modern Warfare",
+              credit: "Modern warfare indeed",
+            },
+            start_date: {
+              year: "2007",
+            },
+            text: {
+              headline: "Call of Duty 4: Modern Warfare",
+              text: "<p>Our competitive FPS phase began! We mastered the maps, learned the spawn points, and developed our own callout system. The 1v1v1 battles were intense.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              caption: "Minecraft creative mode",
+              credit: "Block by block",
+            },
+            start_date: {
+              year: "2011",
+            },
+            text: {
+              headline: "Minecraft",
+              text: "<p>Our creative outlet! We built entire cities together, survived countless nights, and created our own mini-games within the game. The redstone contraptions were our engineering masterpieces.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              caption: "Rocket League aerial goals",
+              credit: "What a save!",
+            },
+            start_date: {
+              year: "2015",
+            },
+            text: {
+              headline: "Rocket League",
+              text: "<p>Soccer with rocket-powered cars! We became aerial masters, perfected our rotations, and developed our own team strategies. The 'What a save!' spam was real.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
+              caption: "Among Us betrayal",
+              credit: "Red is sus",
+            },
+            start_date: {
+              year: "2020",
+            },
+            text: {
+              headline: "Among Us",
+              text: "<p>The pandemic brought us back together! We became masters of deception and deduction. The family group chat was filled with accusations and alibis. 'Red vented!' became our catchphrase.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              caption: "Valorant tactical gameplay",
+              credit: "Plant the spike!",
+            },
+            start_date: {
+              year: "2021",
+            },
+            text: {
+              headline: "Valorant",
+              text: "<p>Our tactical shooter phase! We learned to communicate like pros, mastered different agents, and developed our own strategies. The clutch plays were always the most memorable.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              caption: "Baldur's Gate 3 co-op",
+              credit: "Roll for initiative!",
+            },
+            start_date: {
+              year: "2023",
+            },
+            text: {
+              headline: "Baldur's Gate 3",
+              text: "<p>Our return to RPGs! We created characters that complemented each other, made choices together, and experienced an epic story as a team. The dice rolls determined our fate.</p>",
+            },
+          },
+        ],
+      };
+
+      // Initialize timeline when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        const embed = document.getElementById("timeline-embed");
+        embed.style.height = getComputedStyle(document.body).height;
+
+        window.timeline = new TL.Timeline("timeline-embed", timelineData, {
+          hash_bookmark: false,
+          default_bg_color: "#667eea",
+          timenav_height: 200,
+          timenav_height_percentage: 25,
+          timenav_mobile_height_percentage: 40,
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", function () {
+          const embed = document.getElementById("timeline-embed");
+          embed.style.height = getComputedStyle(document.body).height;
+        });
+      });
+    </script>
+  </body>
+</html>
