@@ -10,7 +10,7 @@
     />
     <link
       rel="stylesheet"
-      href="//cdn.knightlab.com/libs/timeline3/latest/css/timeline.css"
+      href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css"
     />
     <style>
       html,
@@ -20,30 +20,85 @@
         margin: 0;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow: hidden;
       }
 
       .header {
         text-align: center;
-        padding: 20px;
+        padding: 15px;
         color: white;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
         backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
       }
 
       .header h1 {
         margin: 0;
-        font-size: 2.5em;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 2em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       }
 
       .header p {
-        margin: 10px 0 0 0;
-        font-size: 1.2em;
-        opacity: 0.9;
+        margin: 5px 0 0 0;
+        font-size: 1em;
+        opacity: 0.95;
       }
 
       #timeline-embed {
-        height: calc(100vh - 120px);
+        height: 100vh;
+        margin-top: 80px;
+        background: white;
+      }
+
+      /* Override timeline default styles for better contrast */
+      .tl-timeline {
+        background: white !important;
+      }
+
+      .tl-timeline h1,
+      .tl-timeline h2,
+      .tl-timeline h3 {
+        color: #333 !important;
+      }
+
+      .tl-timeline p {
+        color: #555 !important;
+      }
+
+      .tl-timeline .tl-text-content {
+        background: rgba(255, 255, 255, 0.95) !important;
+        color: #333 !important;
+      }
+
+      .tl-timeline .tl-text-headline {
+        color: #2c3e50 !important;
+        font-weight: bold !important;
+      }
+
+      .tl-timeline .tl-text-date {
+        color: #7f8c8d !important;
+      }
+
+      .tl-timeline .tl-text-description {
+        color: #555 !important;
+        line-height: 1.6 !important;
+      }
+
+      .tl-timeline .tl-timenav {
+        background: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .tl-timeline .tl-timenav-slider {
+        background: #667eea !important;
+      }
+
+      .tl-timeline .tl-timenav-timemarker {
+        background: #667eea !important;
+        border-color: #667eea !important;
       }
 
       .loading {
@@ -68,7 +123,7 @@
 
     <script
       type="text/javascript"
-      src="//cdn.knightlab.com/libs/timeline3/latest/js/timeline-min.js"
+      src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline-min.js"
     ></script>
     <script>
       // Gaming timeline data
@@ -87,170 +142,366 @@
         events: [
           {
             media: {
-              url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
-              caption: "Our first gaming console together",
-              credit: "The beginning of everything",
-            },
-            start_date: {
-              year: "1995",
-            },
-            text: {
-              headline: "Super Mario Bros. - The Beginning",
-              text: "<p>Our first shared gaming experience! Taking turns on the NES, we learned the art of cooperative gaming. Who could forget the arguments over who got to be Mario vs Luigi?</p>",
-            },
-          },
-          {
-            media: {
               url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
-              caption: "GoldenEye 007 multiplayer nights",
-              credit: "Bond, James Bond",
-            },
-            start_date: {
-              year: "1997",
-            },
-            text: {
-              headline: "GoldenEye 007 - Multiplayer Madness",
-              text: "<p>Our first true multiplayer experience! Split-screen battles that lasted for hours. The living room became our battlefield, and 'No Oddjob' was the sacred rule.</p>",
-            },
-          },
-          {
-            media: {
-              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
-              caption: "Pokemon trading card battles",
-              credit: "Gotta catch 'em all!",
-            },
-            start_date: {
-              year: "1999",
-            },
-            text: {
-              headline: "Pokemon Trading Card Game",
-              text: "<p>Not just video games! We spent countless hours trading Pokemon cards, building decks, and battling each other. The rare card trades were always the most dramatic.</p>",
-            },
-          },
-          {
-            media: {
-              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
-              caption: "Halo LAN parties",
-              credit: "Master Chief would be proud",
-            },
-            start_date: {
-              year: "2001",
-            },
-            text: {
-              headline: "Halo: Combat Evolved",
-              text: "<p>Our introduction to the Xbox! LAN parties became our weekend ritual. Blood Gulch was our favorite map, and the Warthog became our chariot of destruction.</p>",
-            },
-          },
-          {
-            media: {
-              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
-              caption: "Mario Kart Double Dash chaos",
-              credit: "Blue shell trauma",
-            },
-            start_date: {
-              year: "2003",
-            },
-            text: {
-              headline: "Mario Kart: Double Dash!!",
-              text: "<p>The ultimate test of brotherly love and betrayal! Blue shells became the great equalizer, and Rainbow Road was our nemesis. Double-dash mechanics made teamwork essential.</p>",
-            },
-          },
-          {
-            media: {
-              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
-              caption: "World of Warcraft adventures",
-              credit: "For the Horde! (or Alliance...)",
+              caption: "Diablo II - Our first ARPG together",
+              credit: "Blizzard Entertainment",
             },
             start_date: {
               year: "2004",
             },
             text: {
-              headline: "World of Warcraft",
-              text: "<p>Our first MMO experience! We formed our own guild, raided dungeons together, and spent way too much time grinding for epic loot. The late-night raids were legendary.</p>",
+              headline: "Diablo II - The Beginning of ARPGs",
+              text: "<p>Our first dive into action role-playing games! We spent countless hours grinding for loot, trading items, and exploring the dark world of Sanctuary. The shared excitement of finding rare items and the cooperative dungeon runs created our foundation for future ARPG adventures.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              caption: "Alpha Centauri - Turn-based strategy",
+              credit: "Firaxis Games",
+            },
+            start_date: {
+              year: "2004",
+            },
+            text: {
+              headline: "Alpha Centauri - Holiday Strategy Sessions",
+              text: "<p>Our introduction to 4X strategy games! During the 2004 holidays, we gathered in person for epic turn-based battles. The game was so engaging that we continued playing via PBEM (Play By Email) throughout 2005-2006, sending turns back and forth and planning our next moves.</p>",
             },
           },
           {
             media: {
               url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
-              caption: "Call of Duty Modern Warfare",
-              credit: "Modern warfare indeed",
+              caption: "Weewar on the first iPhone",
+              credit: "Mobile gaming pioneer",
             },
             start_date: {
               year: "2007",
             },
             text: {
-              headline: "Call of Duty 4: Modern Warfare",
-              text: "<p>Our competitive FPS phase began! We mastered the maps, learned the spawn points, and developed our own callout system. The 1v1v1 battles were intense.</p>",
+              headline: "Weewar - First iPhone Gaming",
+              text: "<p>Our first mobile gaming experience! Weewar introduced us to PBEM gaming on the first iPhone. The turn-based strategy game was perfect for asynchronous play, allowing us to continue our gaming sessions even when we couldn't be together in person.</p>",
             },
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
-              caption: "Minecraft creative mode",
-              credit: "Block by block",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg",
+              caption: "Neverwinter Nights - D&D adventures",
+              credit: "BioWare",
+            },
+            start_date: {
+              year: "2008",
+            },
+            text: {
+              headline: "Neverwinter Nights - D&D Adventures",
+              text: "<p>Our first deep dive into Dungeons & Dragons! We created characters, embarked on epic quests, and experienced the rich storytelling that would become a hallmark of our gaming sessions. The cooperative storytelling and character development brought us closer together.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg",
+              caption: "Left 4 Dead - Zombie survival",
+              credit: "Valve Corporation",
+            },
+            start_date: {
+              year: "2010",
+            },
+            text: {
+              headline: "Left 4 Dead - Zombie Survival",
+              text: "<p>Our first cooperative survival horror experience! We learned the importance of teamwork as we fought through hordes of zombies together. The intense moments of rescuing each other and the shared adrenaline of close calls created unforgettable memories.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/248820/header.jpg",
+              caption: "Risk of Rain - Rogue-like action",
+              credit: "Hopoo Games",
             },
             start_date: {
               year: "2011",
             },
             text: {
-              headline: "Minecraft",
-              text: "<p>Our creative outlet! We built entire cities together, survived countless nights, and created our own mini-games within the game. The redstone contraptions were our engineering masterpieces.</p>",
+              headline: "Risk of Rain - Rogue-like Adventures",
+              text: "<p>Our introduction to rogue-like games! The challenging gameplay and permadeath mechanics taught us resilience and strategy. We even have email evidence from November 2014 showing our continued obsession with this gem.</p>",
             },
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
-              caption: "Rocket League aerial goals",
-              credit: "What a save!",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/8980/header.jpg",
+              caption: "Borderlands - Loot and shoot",
+              credit: "Gearbox Software",
+            },
+            start_date: {
+              year: "2012",
+            },
+            text: {
+              headline: "Borderlands - Loot and Shoot",
+              text: "<p>Our first looter shooter experience! We spent countless hours grinding for legendary weapons, exploring the wasteland, and laughing at the game's unique humor. The cooperative gameplay and shared loot hunting became our new obsession.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/35720/header.jpg",
+              caption: "Trine 2 - Puzzle platformer",
+              credit: "Frozenbyte",
+            },
+            start_date: {
+              year: "2013",
+            },
+            text: {
+              headline: "Trine 2 - Magical Puzzle Solving",
+              text: "<p>Our first puzzle platformer together! The beautiful art style and cooperative puzzle mechanics required perfect teamwork. We learned to communicate effectively and think creatively to solve the game's challenging puzzles.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/113020/header.jpg",
+              caption: "Monaco - Heist planning",
+              credit: "Pocketwatch Games",
+            },
+            start_date: {
+              year: "2014",
+            },
+            text: {
+              headline: "Monaco - Master Thieves",
+              text: "<p>Our first heist game! The top-down perspective and cooperative stealth mechanics made us feel like master criminals. Planning heists together and executing them perfectly was incredibly satisfying.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/41500/header.jpg",
+              caption: "Torchlight - ARPG dungeon crawling",
+              credit: "Runic Games",
             },
             start_date: {
               year: "2015",
             },
             text: {
-              headline: "Rocket League",
-              text: "<p>Soccer with rocket-powered cars! We became aerial masters, perfected our rotations, and developed our own team strategies. The 'What a save!' spam was real.</p>",
+              headline: "Torchlight - Return to ARPGs",
+              text: "<p>Our return to action role-playing games! Torchlight's accessible gameplay and charming art style made it perfect for cooperative dungeon crawling. We spent hours exploring dungeons and collecting loot together.</p>",
             },
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop",
-              caption: "Among Us betrayal",
-              credit: "Red is sus",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/200710/header.jpg",
+              caption: "Torchlight II - Bigger and better",
+              credit: "Runic Games",
+            },
+            start_date: {
+              year: "2015",
+            },
+            text: {
+              headline: "Torchlight II - Bigger Adventures",
+              text: "<p>The sequel that improved on everything! Torchlight II's larger world, more classes, and enhanced multiplayer made it our go-to ARPG for months. The shared world exploration and boss battles were epic.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/265630/header.jpg",
+              caption: "FORCED - Arena combat",
+              credit: "BetaDwarf",
+            },
+            start_date: {
+              year: "2015",
+            },
+            text: {
+              headline: "FORCED: Slightly Better Edition - Arena Combat",
+              text: "<p>Our first arena combat game! The challenging gameplay and cooperative mechanics required perfect coordination. We learned to work as a team under pressure and developed our own strategies for each arena.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/320430/header.jpg",
+              caption: "Ascension - Deck building strategy",
+              credit: "Stone Blade Entertainment",
+            },
+            start_date: {
+              year: "2016",
+            },
+            text: {
+              headline: "Ascension: Deckbuilding Game - Strategic Card Battles",
+              text: "<p>Our introduction to deck-building games! The strategic depth and competitive nature of Ascension made every game a new challenge. We spent hours analyzing card combinations and developing our own strategies.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/210770/header.jpg",
+              caption: "Sanctum 2 - Tower defense FPS",
+              credit: "Coffee Stain Studios",
+            },
+            start_date: {
+              year: "2016",
+            },
+            text: {
+              headline: "Sanctum 2 - Tower Defense Meets FPS",
+              text: "<p>Our first tower defense FPS hybrid! The unique combination of first-person shooting and strategic tower placement required both quick reflexes and careful planning. We learned to balance offense and defense perfectly.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/49520/header.jpg",
+              caption: "Borderlands 2 - More loot, more fun",
+              credit: "Gearbox Software",
+            },
+            start_date: {
+              year: "2016",
+            },
+            text: {
+              headline: "Borderlands 2 - The Epic Weapon Incident",
+              text: "<p>Our return to Pandora! This time around, we had an unforgettable moment when one of us tried to share an epic weapon and accidentally threw it off the edge of the world. The shared laughter and frustration became one of our most memorable gaming moments.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/91600/header.jpg",
+              caption: "Sanctum - Original tower defense",
+              credit: "Coffee Stain Studios",
+            },
+            start_date: {
+              year: "2017",
+            },
+            text: {
+              headline: "Sanctum - Back to the Beginning",
+              text: "<p>We went back to play the original Sanctum! Even though Sanctum 2 was more polished, there was something special about experiencing the game that started it all. The simpler mechanics made for more focused cooperative play.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/249050/header.jpg",
+              caption: "Dungeon of the Endless - Rogue-like tower defense",
+              credit: "Amplitude Studios",
+            },
+            start_date: {
+              year: "2017",
+            },
+            text: {
+              headline: "Dungeon of the Endless - Rogue-like Tower Defense",
+              text: "<p>Our first rogue-like tower defense game! The unique combination of genres created a challenging and addictive experience. We spent hours trying to survive longer runs and unlock new characters.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg",
+              caption: "Factorio - Factory automation",
+              credit: "Wube Software",
+            },
+            start_date: {
+              year: "2019",
+            },
+            text: {
+              headline: "Factorio - The Factory Must Grow",
+              text: "<p>Our most complex cooperative experience! Factorio's deep automation mechanics required hours of planning and optimization. We learned to think like engineers, designing efficient production lines and defending our factory from biters.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/527230/header.jpg",
+              caption: "For the King - Turn-based RPG",
+              credit: "IronOak Games",
             },
             start_date: {
               year: "2020",
             },
             text: {
-              headline: "Among Us",
-              text: "<p>The pandemic brought us back together! We became masters of deception and deduction. The family group chat was filled with accusations and alibis. 'Red vented!' became our catchphrase.</p>",
+              headline: "For the King - Turn-based Adventures",
+              text: "<p>Our return to turn-based RPGs! For the King's tabletop-inspired mechanics and cooperative gameplay made every session feel like a board game night. The strategic decisions and shared victories were incredibly satisfying.</p>",
             },
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
-              caption: "Valorant tactical gameplay",
-              credit: "Plant the spike!",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/763890/header.jpg",
+              caption: "Wildermyth - Procedural storytelling",
+              credit: "Worldwalker Games",
             },
             start_date: {
               year: "2021",
             },
             text: {
-              headline: "Valorant",
-              text: "<p>Our tactical shooter phase! We learned to communicate like pros, mastered different agents, and developed our own strategies. The clutch plays were always the most memorable.</p>",
+              headline: "Wildermyth - Procedural Storytelling",
+              text: "<p>Our first procedural storytelling game! Wildermyth's unique approach to narrative generation created stories that felt personal and meaningful. We watched our characters grow and change over multiple campaigns.</p>",
             },
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
-              caption: "Baldur's Gate 3 co-op",
-              credit: "Roll for initiative!",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/239140/header.jpg",
+              caption: "Dying Light - Parkour zombie survival",
+              credit: "Techland",
+            },
+            start_date: {
+              year: "2022",
+            },
+            text: {
+              headline: "Dying Light - Parkour Zombie Survival",
+              text: "<p>Our first parkour-based survival game! Dying Light's unique movement mechanics and cooperative gameplay made zombie survival feel fresh and exciting. The night-time chases were absolutely terrifying.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
+              caption: "Terraria - 2D sandbox adventure",
+              credit: "Re-Logic",
             },
             start_date: {
               year: "2023",
             },
             text: {
-              headline: "Baldur's Gate 3",
-              text: "<p>Our return to RPGs! We created characters that complemented each other, made choices together, and experienced an epic story as a team. The dice rolls determined our fate.</p>",
+              headline: "Terraria - 2D Sandbox Adventures",
+              text: "<p>Our first 2D sandbox game! Terraria's combination of exploration, building, and combat kept us engaged for months. We spent countless hours reading wikis to discover new crafting recipes and strategies.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/780290/header.jpg",
+              caption: "Gloomhaven - Digital board game",
+              credit: "Flaming Fowl Studios",
+            },
+            start_date: {
+              year: "2024",
+            },
+            text: {
+              headline: "Gloomhaven - Digital Board Game",
+              text: "<p>Our first digital board game adaptation! Gloomhaven's deep tactical combat and cooperative storytelling created an immersive experience. The complex mechanics and strategic depth made every session feel like a tabletop adventure.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/704270/header.jpg",
+              caption: "Generation Zero - Swedish robot survival",
+              credit: "Avalanche Studios",
+            },
+            start_date: {
+              year: "2024",
+            },
+            text: {
+              headline: "Generation Zero - Swedish Robot Survival",
+              text: "<p>Our first open-world survival game! Generation Zero's atmospheric Swedish setting and challenging robot enemies created a unique survival experience. We even had fun with photo shoots in the game's beautiful environments.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/630/header.jpg",
+              caption: "Alien Swarm - Cooperative top-down shooter",
+              credit: "Valve Corporation",
+            },
+            start_date: {
+              year: "2025",
+            },
+            text: {
+              headline: "Alien Swarm: Reactive Drop - Cooperative Combat",
+              text: "<p>Our latest cooperative shooter! Alien Swarm's top-down perspective and cooperative mechanics made for intense action-packed sessions. The reactive drop mechanics kept us on our toes.</p>",
+            },
+          },
+          {
+            media: {
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/1284190/header.jpg",
+              caption: "Planet Crafter - Terraforming adventure",
+              credit: "Miju Games",
+            },
+            start_date: {
+              year: "2025",
+            },
+            text: {
+              headline: "Planet Crafter - Terraforming Adventures",
+              text: "<p>Our current obsession! Planet Crafter's unique terraforming mechanics and cooperative gameplay have us working together to transform barren planets into habitable worlds. The sense of progress and discovery is incredible.</p>",
             },
           },
         ],
@@ -259,20 +510,30 @@
       // Initialize timeline when page loads
       document.addEventListener("DOMContentLoaded", function () {
         const embed = document.getElementById("timeline-embed");
-        embed.style.height = getComputedStyle(document.body).height;
+
+        // Set proper height accounting for fixed header
+        const headerHeight = 80;
+        const availableHeight = window.innerHeight - headerHeight;
+        embed.style.height = availableHeight + "px";
 
         window.timeline = new TL.Timeline("timeline-embed", timelineData, {
           hash_bookmark: false,
           default_bg_color: "#667eea",
-          timenav_height: 200,
-          timenav_height_percentage: 25,
-          timenav_mobile_height_percentage: 40,
+          timenav_height: 150,
+          timenav_height_percentage: 20,
+          timenav_mobile_height_percentage: 30,
+          height: availableHeight,
+          width: "100%",
         });
 
         // Handle window resize
         window.addEventListener("resize", function () {
-          const embed = document.getElementById("timeline-embed");
-          embed.style.height = getComputedStyle(document.body).height;
+          const newAvailableHeight = window.innerHeight - headerHeight;
+          embed.style.height = newAvailableHeight + "px";
+
+          if (window.timeline) {
+            window.timeline.updateDisplay();
+          }
         });
       });
     </script>
