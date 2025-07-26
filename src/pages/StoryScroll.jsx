@@ -82,6 +82,12 @@ const StoryScroll = ({ setCurrentMode }) => {
         <motion.section
           key={game.id}
           className="game-chapter"
+          style={{
+            backgroundImage: game.headerImage ? `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${game.headerImage})` : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed'
+          }}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}

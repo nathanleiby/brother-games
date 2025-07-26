@@ -61,6 +61,19 @@ const GameDetail = ({ setCurrentMode }) => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
+        {game.headerImage && (
+          <div className="header-image">
+            <img 
+              src={game.headerImage} 
+              alt={game.title}
+              loading="lazy"
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+          </div>
+        )}
+        
         <div className="header-content">
           <h1 className="game-title">{game.title}</h1>
           <div className="game-meta">
@@ -156,6 +169,39 @@ const GameDetail = ({ setCurrentMode }) => {
           ))}
         </div>
       </motion.div>
+
+      {/* Screenshots Gallery */}
+      {game.images?.screenshots && game.images.screenshots.length > 0 && (
+        <motion.div
+          className="screenshots-section"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <h2>Screenshots</h2>
+          <div className="screenshots-grid">
+            {game.images.screenshots.map((screenshot, index) => (
+              <motion.div
+                key={index}
+                className="screenshot-item"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.7 + index * 0.1, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <img 
+                  src={screenshot}
+                  alt={`${game.title} screenshot ${index + 1}`}
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.parentElement.style.display = 'none';
+                  }}
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Related Games */}
       <motion.div

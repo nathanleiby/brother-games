@@ -235,6 +235,19 @@ const GameShelf = ({ setCurrentMode }) => {
               whileTap={{ scale: 0.95 }}
               onClick={() => handleGameClick(game.id)}
             >
+              {(game.images?.capsule || game.headerImage) && (
+                <div className="card-image">
+                  <img 
+                    src={game.images?.capsule || game.headerImage} 
+                    alt={game.title}
+                    loading="lazy"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
+              
               <div className="card-header">
                 <h3 className="card-title">{game.title}</h3>
                 <div className="card-meta">
