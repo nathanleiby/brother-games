@@ -12,13 +12,19 @@
       rel="stylesheet"
       href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       html,
       body {
         height: 100%;
         padding: 0;
         margin: 0;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         overflow: hidden;
       }
@@ -39,13 +45,18 @@
       .header h1 {
         margin: 0;
         font-size: 2em;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        font-family: "Orbitron", monospace;
+        font-weight: 900;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7),
+          0 0 20px rgba(102, 126, 234, 0.5);
+        letter-spacing: 2px;
       }
 
       .header p {
         margin: 5px 0 0 0;
         font-size: 1em;
         opacity: 0.95;
+        font-weight: 300;
       }
 
       #timeline-embed {
@@ -101,6 +112,258 @@
         border-color: #667eea !important;
       }
 
+      /* Image improvements */
+      .tl-timeline .tl-media-image {
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        border: 2px solid rgba(255, 255, 255, 0.8) !important;
+      }
+
+      .tl-timeline .tl-media-image img {
+        border-radius: 6px !important;
+      }
+
+      /* Improve caption legibility */
+      .tl-timeline .tl-media-caption {
+        background: rgba(0, 0, 0, 0.7) !important;
+        color: white !important;
+        padding: 8px 12px !important;
+        border-radius: 4px !important;
+        font-weight: 500 !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8) !important;
+      }
+
+      .tl-timeline .tl-media-credit {
+        background: rgba(0, 0, 0, 0.6) !important;
+        color: #e0e0e0 !important;
+        padding: 4px 8px !important;
+        border-radius: 3px !important;
+        font-size: 0.9em !important;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8) !important;
+      }
+
+      /* Timeline navigation improvements */
+      .tl-timeline .tl-timenav-event {
+        background: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        min-height: 80px !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      .tl-timeline .tl-timenav-event.tl-timenav-event-active {
+        background: #667eea !important;
+        color: white !important;
+        border-color: #667eea !important;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3) !important;
+      }
+
+      .tl-timeline .tl-timenav-event-content {
+        color: #333 !important;
+        font-weight: 500 !important;
+        padding: 6px 8px !important;
+        font-size: 0.85em !important;
+        line-height: 1.3 !important;
+        text-align: center !important;
+      }
+
+      .tl-timeline
+        .tl-timenav-event.tl-timenav-event-active
+        .tl-timenav-event-content {
+        color: white !important;
+      }
+
+      /* Timeline thumbnail improvements */
+      .tl-timeline .tl-timemarker-media-container {
+        width: 100% !important;
+        height: 50px !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        border-radius: 3px 3px 0 0 !important;
+        margin-bottom: 4px !important;
+      }
+
+      .tl-timeline .tl-icon-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 3px 3px 0 0 !important;
+        background-size: cover !important;
+        background-position: center !important;
+        /* Hide the default icon */
+        background-image: none !important;
+      }
+
+      /* Hide default icons when we have custom images */
+      .tl-timeline .tl-icon-image[style*="background-image"] {
+        background-image: var(--custom-bg) !important;
+      }
+
+      /* Force timeline events to show actual images */
+      .tl-timeline .tl-timemarker-media-container[data-media-url] {
+        background-image: var(--media-url) !important;
+      }
+
+      /* Direct CSS replacement for game images */
+      .tl-timeline .tl-timemarker-media-container:nth-child(1) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/2660/library_hero.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(2) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/3910/library_hero.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(3) .tl-icon-image {
+        background-image: url("https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=600&h=400&fit=crop") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(4) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(5) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/550/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(6) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/248820/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(7) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/8980/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(8) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/35720/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(9) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/113020/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(10) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/41500/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(11) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/200710/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(12) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/265630/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(13) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/320430/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(14) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/210770/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(15) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/49520/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(16) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/91600/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(17) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/249050/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(18) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(19) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/527230/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(20) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/763890/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(21) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/239140/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(22) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(23) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/780290/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(24) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/704270/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(25) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/630/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
+      .tl-timeline .tl-timemarker-media-container:nth-child(26) .tl-icon-image {
+        background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/1284190/header.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+
       .loading {
         display: flex;
         justify-content: center;
@@ -142,7 +405,7 @@
         events: [
           {
             media: {
-              url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=400&fit=crop",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/2660/library_hero.jpg",
               caption: "Diablo II - Our first ARPG together",
               credit: "Blizzard Entertainment",
             },
@@ -156,7 +419,7 @@
           },
           {
             media: {
-              url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&h=400&fit=crop",
+              url: "https://cdn.akamai.steamstatic.com/steam/apps/3910/library_hero.jpg",
               caption: "Alpha Centauri - Turn-based strategy",
               credit: "Firaxis Games",
             },
@@ -519,12 +782,53 @@
         window.timeline = new TL.Timeline("timeline-embed", timelineData, {
           hash_bookmark: false,
           default_bg_color: "#667eea",
-          timenav_height: 150,
-          timenav_height_percentage: 20,
-          timenav_mobile_height_percentage: 30,
+          timenav_height: 180,
+          timenav_height_percentage: 25,
+          timenav_mobile_height_percentage: 35,
           height: availableHeight,
           width: "100%",
+          timenav_events_height: 120,
+          timenav_events_icon: true,
+          timenav_events_icon_size: 50,
         });
+
+        // Ensure timeline navigation shows actual images
+        setTimeout(() => {
+          const timelineEvents = document.querySelectorAll(
+            ".tl-timemarker-media-container"
+          );
+          console.log("Found timeline events:", timelineEvents.length);
+
+          timelineEvents.forEach((event, index) => {
+            console.log(`Event ${index + 1}:`, event);
+            console.log(`Event ${index + 1} classes:`, event.className);
+            console.log(`Event ${index + 1} HTML:`, event.innerHTML);
+
+            if (
+              timelineData.events[index] &&
+              timelineData.events[index].media &&
+              timelineData.events[index].media.url
+            ) {
+              const icon = event.querySelector(".tl-icon-image");
+              if (icon) {
+                // Clear any default background and set the game image
+                icon.style.backgroundImage = `url(${timelineData.events[index].media.url})`;
+                icon.style.backgroundSize = "cover";
+                icon.style.backgroundPosition = "center";
+                icon.style.width = "100%";
+                icon.style.height = "100%";
+                icon.style.display = "block";
+                icon.style.minHeight = "50px";
+                // Remove any default icon content
+                icon.innerHTML = "";
+                console.log(
+                  `Set image for event ${index + 1}:`,
+                  timelineData.events[index].media.url
+                );
+              }
+            }
+          });
+        }, 1000);
 
         // Handle window resize
         window.addEventListener("resize", function () {
