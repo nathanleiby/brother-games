@@ -88,6 +88,12 @@ Hours would pass in this perfect loop of building, researching, and sharing know
     setShowModal(eggId);
   };
 
+  const handleCloseModal = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowModal(null);
+  };
+
   const currentEgg = easterEggs[gameId];
   if (!currentEgg) return null;
 
@@ -114,7 +120,7 @@ Hours would pass in this perfect loop of building, researching, and sharing know
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setShowModal(null)}
+            onClick={handleCloseModal}
           >
             <motion.div
               className="easter-egg-modal"
@@ -125,7 +131,7 @@ Hours would pass in this perfect loop of building, researching, and sharing know
             >
               <div className="modal-header">
                 <h3>{currentEgg.story.title}</h3>
-                <button onClick={() => setShowModal(null)}>×</button>
+                <button onClick={handleCloseModal}>×</button>
               </div>
               <div className="modal-content">
                 <p>{currentEgg.story.content}</p>
