@@ -15,15 +15,11 @@ const Navigation = ({ currentMode, setCurrentMode }) => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, type: "spring" }}
-      className="navigation"
-    >
+    <nav className="navigation">
       <div className="nav-container">
         <motion.div
           className="nav-brand"
+          onClick={() => handleModeChange("story")}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -32,51 +28,31 @@ const Navigation = ({ currentMode, setCurrentMode }) => {
         </motion.div>
 
         <div className="nav-modes">
-          <motion.button
-            className={`mode-button ${currentMode === "story" ? "active" : ""}`}
-            onClick={() => handleModeChange("story")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <span className="mode-icon">📖</span>
-            Story Scroll
-          </motion.button>
-
-          <motion.button
-            className={`mode-button ${currentMode === "shelf" ? "active" : ""}`}
-            onClick={() => handleModeChange("shelf")}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <span className="mode-icon">🎮</span>
-            Game Shelf
-          </motion.button>
-        </div>
-
-        <div className="nav-progress">
-          {location.pathname === "/" && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="progress-indicator"
+          {location.pathname === "/" ? (
+            <motion.button
+              className="game-shelf-link"
+              onClick={() => handleModeChange("shelf")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <span>Timeline: 2004-2025</span>
-            </motion.div>
-          )}
-          {location.pathname === "/shelf" && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="progress-indicator"
+              Game Shelf
+            </motion.button>
+          ) : (
+            <motion.button
+              className="game-shelf-link"
+              onClick={() => handleModeChange("story")}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              <span>Browse Collection</span>
-            </motion.div>
+              Story
+            </motion.button>
           )}
         </div>
+
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
