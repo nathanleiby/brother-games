@@ -8,11 +8,11 @@ export const gamesData = [
     locations: ["Boston", "Oakland"],
     tags: ["rpg", "co-op"],
     description: "",
-    headerImage: "https://images.igdb.com/igdb/image/upload/t_1080p/co1rcf.webp",
+    headerImage: "https://wallpapers.com/images/high/diablo-2-resurrected-1920-x-1080-u7g88mkivn6a8tx4.webp",
     steamAppId: null,
     images: {
-      header: "https://images.igdb.com/igdb/image/upload/t_1080p/co1rcf.webp",
-      capsule: "https://images.igdb.com/igdb/image/upload/t_1080p/co1rcf.webp",
+      header: "https://wallpapers.com/images/high/diablo-2-resurrected-1920-x-1080-u7g88mkivn6a8tx4.webp",
+      capsule: "https://wallpapers.com/images/high/diablo-2-resurrected-1920-x-1080-u7g88mkivn6a8tx4.webp",
       screenshots: []
     }
   },

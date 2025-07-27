@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { gamesData } from "../data/gamesData";
 import EasterEggs from "../components/EasterEggs";
+import GameTile from "../components/GameTile";
 
 const GameDetail = ({ setCurrentMode }) => {
   const { gameId } = useParams();
@@ -48,136 +49,129 @@ const GameDetail = ({ setCurrentMode }) => {
     <motion.div className="game-detail">
       {/* Easter Egg */}
       <EasterEggs gameId={game.id} />
-      {/* Navigation */}
-      <div className="detail-navigation">
-        <motion.button
-          className="back-button"
-          onClick={handleBackClick}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          ← Back to Shelf
-        </motion.button>
-        <motion.button
-          className="story-button"
-          onClick={handleStoryClick}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          View in Story Mode
-        </motion.button>
-      </div>
 
-      {/* Compact Game Header */}
-      <div className="compact-game-header">
-        <div className="header-main-content">
-          <div className="compact-header-image">
-            {game.headerImage && !imageError ? (
-              <img 
-                src={game.headerImage} 
-                alt={game.title}
-                loading="lazy"
-                onError={() => setImageError(true)}
-              />
-            ) : (
-              <div className="image-placeholder">
-                <span>{game.title}</span>
-              </div>
-            )}
+      {/* Game Info Grid */}
+      <div className="game-info-compact">
+        {/* Main Content Area */}
+        <div className="game-main-content">
+          {/* Hero Game Image */}
+          <div className="game-hero">
+            <div className="hero-image-container">
+              {game.headerImage && !imageError ? (
+                <img 
+                  src={game.headerImage} 
+                  alt={game.title}
+                  loading="lazy"
+                  onError={() => setImageError(true)}
+                  className="hero-image"
+                />
+              ) : (
+                <div className="hero-placeholder">
+                  <span>{game.title}</span>
+                </div>
+              )}
+            </div>
           </div>
-          
-          <div className="header-info">
-            <div className="title-section">
-              <h1 className="compact-game-title">{game.title}</h1>
-              <span className="compact-year">{game.year}</span>
+
+          {/* Content Sections */}
+          <div className="game-content-right">
+            {/* Game Title */}
+            <div className="game-title-section">
+              <h1 className="game-detail-title">{game.title}</h1>
+              <span className="game-detail-year">{game.year}</span>
+              
+              {/* Navigation Links */}
+              <div className="detail-navigation">
+                <motion.button
+                  className="back-button"
+                  onClick={handleBackClick}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  ← Back to Shelf
+                </motion.button>
+                <motion.button
+                  className="story-button"
+                  onClick={handleStoryClick}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View in Story Mode
+                </motion.button>
+              </div>
             </div>
-            
+            {/* Description */}
             {game.description && (
-              <p className="compact-description">{game.description}</p>
-            )}
-
-            <div className="compact-badges">
-              {/* Locations */}
-              <div className="badge-group">
-                <span className="badge-label">Cities:</span>
-                {game.locations.map((location) => (
-                  <span key={location} className="compact-badge location">
-                    {location}
-                  </span>
-                ))}
-              </div>
-
-              {/* Tags */}
-              <div className="badge-group">
-                <span className="badge-label">Tags:</span>
-                {game.tags.map((tag) => (
-                  <span key={tag} className="compact-badge tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Special Notes and Play Style */}
-            {(game.specialNote || game.playStyle) && (
-              <div className="compact-notes">
-                {game.playStyle && (
-                  <p><strong>Play Style:</strong> {game.playStyle}</p>
-                )}
-                {game.specialNote && (
-                  <p><strong>Note:</strong> {game.specialNote}</p>
-                )}
+              <div className="description-card">
+                <p>{game.description}</p>
               </div>
             )}
-
-            {/* Related Games - Inline */}
-            <div className="inline-related">
-              <h4>Related Games</h4>
-              <div className="related-chips">
-                {gamesData
-                  .filter(
-                    (g) =>
-                      g.id !== game.id &&
-                      (g.year === game.year ||
-                        g.tags.some((t) => game.tags.includes(t)))
-                  )
-                  .slice(0, 8)
-                  .map((relatedGame) => (
-                    <span
-                      key={relatedGame.id}
-                      className="related-chip"
-                      onClick={() => navigate(`/game/${relatedGame.id}`)}
-                    >
-                      {relatedGame.title} ({relatedGame.year})
+            
+            {/* Meta Info */}
+            <div className="meta-cards">
+              <div className="meta-card">
+                <h4>Cities</h4>
+                <div className="meta-tags">
+                  {game.locations.map((location) => (
+                    <span key={location} className="meta-tag location">
+                      {location}
                     </span>
                   ))}
+                </div>
+              </div>
+
+              <div className="meta-card">
+                <h4>Tags</h4>
+                <div className="meta-tags">
+                  {game.tags.slice(0, 4).map((tag) => (
+                    <span key={tag} className="meta-tag tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {/* Additional Info */}
+            {(game.specialNote || game.playStyle) && (
+              <div className="additional-info">
+                {game.playStyle && (
+                  <div className="info-chip">
+                    <strong>Play Style:</strong> {game.playStyle}
+                  </div>
+                )}
+                {game.specialNote && (
+                  <div className="info-chip">
+                    <strong>Note:</strong> {game.specialNote}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Related Games - Full Width */}
+        <div className="related-section">
+          <h3>Related Games</h3>
+          <div className="related-tiles">
+            {gamesData
+              .filter(
+                (g) =>
+                  g.id !== game.id &&
+                  (g.year === game.year ||
+                    g.tags.some((t) => game.tags.includes(t)))
+              )
+              .slice(0, 5)
+              .map((relatedGame) => (
+                <GameTile
+                  key={relatedGame.id}
+                  game={relatedGame}
+                  className="related-tile"
+                />
+              ))}
           </div>
         </div>
       </div>
-
-      {/* Screenshots Gallery - Full Width */}
-      {game.images?.screenshots && game.images.screenshots.length > 0 && (
-        <div className="compact-screenshots-full">
-          <h3>Screenshots</h3>
-          <div className="compact-screenshots-grid-full">
-            {game.images.screenshots.slice(0, 6).map((screenshot, index) => (
-              <div key={index} className="compact-screenshot">
-                <img 
-                  src={screenshot}
-                  alt={`${game.title} screenshot ${index + 1}`}
-                  loading="lazy"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.parentElement.innerHTML = '<div class="screenshot-placeholder">Screenshot unavailable</div>';
-                  }}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </motion.div>
   );
 };

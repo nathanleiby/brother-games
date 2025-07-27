@@ -42,7 +42,6 @@ const BrotherhoodStats = ({ isVisible, onClose }) => {
     const tags = [...new Set(gamesData.flatMap(game => game.tags))];
     
     const coopGames = gamesData.filter(game => game.tags.includes('co-op'));
-    const epicMemories = gamesData.filter(game => game.epicMemoryLevel >= 8);
     const wikiGames = gamesData.filter(game => game.tags.includes('wiki'));
     const pbemGames = gamesData.filter(game => game.tags.includes('pbem'));
     
@@ -54,16 +53,9 @@ const BrotherhoodStats = ({ isVisible, onClose }) => {
       platforms: platforms.length,
       locations: locations.length,
       coopGames: coopGames.length,
-      epicMemories: epicMemories.length,
       wikiGames: wikiGames.length,
       pbemGames: pbemGames.length,
       totalMemories,
-      averageEpicLevel: Math.round(
-        gamesData.reduce((sum, game) => sum + game.epicMemoryLevel, 0) / gamesData.length
-      ),
-      mostMemorableGame: gamesData.reduce((prev, current) => 
-        prev.epicMemoryLevel > current.epicMemoryLevel ? prev : current
-      ).title,
       longestCampaign: gamesData.find(game => game.yearRange)?.title || "Alpha Centauri"
     });
   };
@@ -107,10 +99,6 @@ const BrotherhoodStats = ({ isVisible, onClose }) => {
             <span className="stat-number">{stats.coopGames}</span>
             <span className="stat-label">Co-op Adventures</span>
           </div>
-          <div className="stat-item special">
-            <span className="stat-number">{stats.epicMemories}</span>
-            <span className="stat-label">Epic Memories (8+)</span>
-          </div>
           <div className="stat-item">
             <span className="stat-number">{stats.wikiGames}</span>
             <span className="stat-label">Wiki Deep-Dives</span>
@@ -127,16 +115,8 @@ const BrotherhoodStats = ({ isVisible, onClose }) => {
 
         <div className="special-achievements">
           <div className="achievement">
-            <span className="achievement-label">Most Memorable Game:</span>
-            <span className="achievement-value">{stats.mostMemorableGame}</span>
-          </div>
-          <div className="achievement">
             <span className="achievement-label">Longest Campaign:</span>
             <span className="achievement-value">{stats.longestCampaign}</span>
-          </div>
-          <div className="achievement">
-            <span className="achievement-label">Average Epic Level:</span>
-            <span className="achievement-value">{stats.averageEpicLevel}/10</span>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { useState, useMemo, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { gamesData, filterGames, sortGames, getStats } from "../data/gamesData";
+import GameTile from "../components/GameTile";
 
 const GameShelf = ({ setCurrentMode }) => {
   const navigate = useNavigate();
@@ -90,34 +91,11 @@ const GameShelf = ({ setCurrentMode }) => {
           </div>
         ) : (
           filteredGames.map((game) => (
-            <div
+            <GameTile
               key={game.id}
-              className="game-tile"
-              onClick={() => handleGameClick(game.id)}
-              title={`${game.title} (${game.year})`}
-            >
-              <div className="tile-image">
-                {(game.images?.capsule || game.headerImage) ? (
-                  <img 
-                    src={game.images?.capsule || game.headerImage} 
-                    alt={game.title}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                ) : (
-                  <div className="tile-placeholder">
-                    <span>{game.title}</span>
-                  </div>
-                )}
-              </div>
-              <div className="tile-info">
-                <h3 className="tile-title">{game.title}</h3>
-                <span className="tile-year">{game.year}</span>
-              </div>
-            </div>
+              game={game}
+              onClick={handleGameClick}
+            />
           ))
         )}
       </div>
