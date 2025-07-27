@@ -79,26 +79,6 @@ const GameDetail = ({ setCurrentMode }) => {
             <div className="game-title-section">
               <h1 className="game-detail-title">{game.title}</h1>
               <span className="game-detail-year">{game.year}</span>
-              
-              {/* Navigation Links */}
-              <div className="detail-navigation">
-                <motion.button
-                  className="back-button"
-                  onClick={handleBackClick}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  ← Back to Shelf
-                </motion.button>
-                <motion.button
-                  className="story-button"
-                  onClick={handleStoryClick}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View in Story Mode
-                </motion.button>
-              </div>
             </div>
             {/* Description */}
             {game.description && (
@@ -171,6 +151,26 @@ const GameDetail = ({ setCurrentMode }) => {
               ))}
           </div>
         </div>
+      </div>
+
+      {/* Bottom Corner Navigation */}
+      <div className="bottom-navigation">
+        <motion.button
+          className="back-button bottom-nav-button"
+          onClick={handleBackClick}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          ← Back to Shelf
+        </motion.button>
+        <motion.button
+          className="story-button bottom-nav-button"
+          onClick={handleStoryClick}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          View in Story Mode
+        </motion.button>
       </div>
     </motion.div>
   );
