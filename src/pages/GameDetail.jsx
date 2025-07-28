@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { gamesData } from "../data/gamesData";
-import EasterEggs from "../components/EasterEggs";
+import MemoriesCamera from "../components/EasterEggs";
 import GameTile from "../components/GameTile";
 
 const GameDetail = ({ setCurrentMode }) => {
@@ -47,9 +47,6 @@ const GameDetail = ({ setCurrentMode }) => {
 
   return (
     <motion.div className="game-detail">
-      {/* Easter Egg */}
-      <EasterEggs gameId={game.id} />
-
       {/* Game Info Grid */}
       <div className="game-info-compact">
         {/* Main Content Area */}
@@ -77,8 +74,13 @@ const GameDetail = ({ setCurrentMode }) => {
           <div className="game-content-right">
             {/* Game Title */}
             <div className="game-title-section">
-              <h1 className="game-detail-title">{game.title}</h1>
-              <span className="game-detail-year">{game.year}</span>
+              <div className="title-with-camera">
+                <div className="title-content">
+                  <h1 className="game-detail-title">{game.title}</h1>
+                  <span className="game-detail-year">{game.year}</span>
+                </div>
+                <MemoriesCamera gameId={game.id} />
+              </div>
             </div>
             {/* Description */}
             {game.description && (
@@ -112,45 +114,6 @@ const GameDetail = ({ setCurrentMode }) => {
               </div>
             </div>
 
-            {/* Memories and Screenshots */}
-            {(game.memories?.length > 0 || game.screenshots?.length > 0) && (
-              <div className="memories-section">
-                {game.memories?.length > 0 && (
-                  <div className="memories-card">
-                    <h4>Memories</h4>
-                    <ul className="memories-list">
-                      {game.memories.map((memory, index) => (
-                        <li key={index} className="memory-item">
-                          {memory}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                
-                {game.screenshots?.length > 0 && (
-                  <div className="screenshots-card">
-                    <h4>Screenshots</h4>
-                    <div className="screenshots-grid">
-                      {game.screenshots.map((screenshot, index) => (
-                        <div key={index} className="screenshot-item">
-                          <img 
-                            src={`${import.meta.env.BASE_URL}screenshots/${screenshot}`}
-                            alt={`${game.title} screenshot ${index + 1}`}
-                            loading="lazy"
-                            className="screenshot-image"
-                            onError={(e) => {
-                              console.error(`Failed to load screenshot: ${screenshot}`);
-                              e.target.style.display = 'none';
-                            }}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
 
           </div>
         </div>
@@ -166,6 +129,13 @@ const GameDetail = ({ setCurrentMode }) => {
                   (g.year === game.year ||
                     g.tags.some((t) => game.tags.includes(t)))
               )
+              .sort((a, b) => {
+                // Create deterministic "random" order based on game ID
+                const seedA = game.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const seedB = a.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                const seedC = b.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                return (seedA + seedB) % 100 - (seedA + seedC) % 100;
+              })
               .slice(0, 5)
               .map((relatedGame) => (
                 <GameTile

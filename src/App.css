@@ -212,6 +212,7 @@ body {
 
 .chapter-header {
   margin-bottom: 2rem;
+  position: relative;
 }
 
 .clickable-title {
@@ -1082,19 +1083,18 @@ body {
 
 .memory-item {
   color: #e8e8e8;
-  font-size: clamp(0.85rem, 1.6vw, 1rem);
-  line-height: 1.5;
-  padding: 0.25rem 0;
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  line-height: 1.6;
+  padding: 0.75rem 1.5rem;
   position: relative;
-  padding-left: 1rem;
+  background: rgba(100, 255, 218, 0.05);
+  border-left: 3px solid #64ffda;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 0.75rem;
 }
 
 .memory-item::before {
-  content: "•";
-  color: #64ffda;
-  position: absolute;
-  left: 0;
-  font-weight: bold;
+  content: "";
 }
 
 .screenshots-grid {
@@ -1130,6 +1130,17 @@ body {
   flex-shrink: 0;
 }
 
+.title-with-camera {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.title-content {
+  flex: 1;
+}
+
 .game-detail-title {
   color: #64ffda;
   font-size: clamp(2rem, 4vw, 3rem);
@@ -1161,6 +1172,14 @@ body {
   grid-template-columns: repeat(5, 1fr);
   gap: clamp(0.25rem, 1vw, 0.5rem);
   max-height: 120px;
+}
+
+.related-tiles .tile-title {
+  color: #ffffff !important;
+}
+
+.related-tiles .tile-year {
+  color: #64ffda !important;
 }
 
 /* Navigation positioning */
@@ -2011,49 +2030,110 @@ body {
 }
 
 /* Easter Eggs */
-.easter-egg {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.memories-camera {
   font-size: 2rem;
   cursor: pointer;
-  z-index: 100;
   user-select: none;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-.easter-egg:hover {
+.memories-camera-story {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.memories-camera-detail {
+  /* Positioned within the flex layout in GameDetail */
+}
+
+.memories-camera:hover {
   filter: drop-shadow(0 0 10px #64ffda);
 }
 
-.easter-egg-modal-overlay {
+.memories-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  z-index: 10001;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(15px);
+  z-index: 10002;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 1rem;
 }
 
-.easter-egg-modal {
+.memories-carousel-modal {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   border: 2px solid #64ffda;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 0;
-  max-width: 600px;
-  width: 100%;
-  max-height: 80vh;
+  width: 95vw;
+  height: 90vh;
+  max-width: 1200px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(100, 255, 218, 0.3);
+  box-shadow: 0 25px 80px rgba(100, 255, 218, 0.4);
+  display: flex;
+  flex-direction: column;
 }
 
-.modal-header {
+.modal-memories {
+  margin-bottom: 1.5rem;
+}
+
+.modal-memories h4 {
+  color: #64ffda;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+}
+
+.modal-screenshots {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-screenshots h4 {
+  color: #64ffda;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+}
+
+.modal-screenshots .screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 0.5rem;
+}
+
+.modal-screenshots .screenshot-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-screenshots .screenshot-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid rgba(100, 255, 218, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.modal-screenshots .screenshot-image:hover {
+  border-color: #64ffda;
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
+}
+
+.carousel-header {
   background: rgba(100, 255, 218, 0.1);
   border-bottom: 1px solid rgba(100, 255, 218, 0.3);
   padding: 1.5rem 2rem;
@@ -2062,21 +2142,27 @@ body {
   align-items: center;
 }
 
-.modal-header h3 {
+.carousel-header h3 {
   color: #64ffda;
   margin: 0;
   font-size: 1.5rem;
   text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
 }
 
-.modal-header button {
+.carousel-counter {
+  color: #8892b0;
+  font-size: 0.9rem;
+  background: rgba(100, 255, 218, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(100, 255, 218, 0.3);
+}
+
+.carousel-header button {
   background: none;
-  border: 2px solid #64ffda;
-  color: #64ffda;
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  border: none;
+  color: #8892b0;
+  font-size: 2rem;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -2084,39 +2170,122 @@ body {
   justify-content: center;
   line-height: 1;
   flex-shrink: 0;
+  padding: 0.25rem;
+  border-radius: 6px;
+  width: auto;
+  height: auto;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
 }
 
-.modal-header button:hover {
+.carousel-header button:hover {
+  color: #64ffda;
   background: rgba(100, 255, 218, 0.1);
-  transform: scale(1.1);
 }
 
-.modal-content {
+.carousel-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   padding: 2rem;
   overflow-y: auto;
-  max-height: 50vh;
 }
 
-.modal-content p {
+.carousel-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+}
+
+.carousel-screenshot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid rgba(100, 255, 218, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-description {
+  margin-top: 1.5rem;
+  background: rgba(100, 255, 218, 0.05);
+  border-left: 3px solid #64ffda;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.5rem;
   color: #e8e8e8;
+  font-size: 1.1rem;
   line-height: 1.6;
-  margin: 0 0 1rem;
-  white-space: pre-line;
-}
-
-.modal-footer {
-  background: rgba(0, 188, 212, 0.1);
-  border-top: 1px solid rgba(0, 188, 212, 0.3);
-  padding: 1rem 2rem;
+  max-width: 80%;
   text-align: center;
 }
 
-.modal-footer p {
-  color: #00bcd4;
-  margin: 0;
-  font-size: 0.9rem;
-  font-style: italic;
+.carousel-memory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem;
 }
+
+.memory-text {
+  background: rgba(100, 255, 218, 0.05);
+  border-left: 3px solid #64ffda;
+  border-radius: 0 8px 8px 0;
+  padding: 2rem 3rem;
+  color: #e8e8e8;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  max-width: 80%;
+  text-align: center;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #8892b0;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0.5rem;
+  border-radius: 6px;
+  width: auto;
+  height: auto;
+}
+
+.carousel-nav:hover {
+  color: #64ffda;
+  background: rgba(100, 255, 218, 0.1);
+}
+
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
+}
+
+/* Old modal styles removed - replaced by carousel */
 
 /* Game cards with easter eggs */
 .game-card {
@@ -2128,28 +2297,55 @@ body {
 }
 
 @media (max-width: 768px) {
-  .easter-egg {
-    top: 10px;
-    right: 10px;
+  .memories-camera {
     font-size: 1.5rem;
   }
-
-  .easter-egg-modal {
-    margin: 1rem;
-    max-height: 90vh;
+  
+  .title-with-camera {
+    gap: 0.5rem;
   }
 
-  .modal-header {
+  .memories-carousel-modal {
+    width: 98vw;
+    height: 95vh;
+    margin: 0.5rem;
+  }
+
+  .carousel-header {
     padding: 1rem 1.5rem;
   }
 
-  .modal-header h3 {
+  .carousel-header h3 {
     font-size: 1.2rem;
   }
 
-  .modal-content {
-    padding: 1.5rem;
-    max-height: 60vh;
+  .carousel-content {
+    padding: 1rem;
+  }
+  
+  .carousel-nav {
+    font-size: 2rem;
+    padding: 0.25rem;
+  }
+  
+  .carousel-prev {
+    left: 0.5rem;
+  }
+  
+  .carousel-next {
+    right: 0.5rem;
+  }
+  
+  .carousel-image {
+    max-height: 50vh;
+  }
+  
+  .carousel-description,
+  .memory-text {
+    max-width: 95%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
   }
 }
 

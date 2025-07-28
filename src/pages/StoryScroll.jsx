@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { gamesData } from "../data/gamesData";
-import EasterEggs from "../components/EasterEggs";
+import MemoriesCamera from "../components/EasterEggs";
 
 const StoryScroll = ({ setCurrentMode }) => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const StoryScroll = ({ setCurrentMode }) => {
             Brother Games
           </h1>
           <p className="hero-subtitle">
-            A 20+ year journey through gaming memories
+            Across 20 years and a lot of distance, we've played a lot of games together and kept in touch...
           </p>
 
         </div>
@@ -54,9 +54,9 @@ const StoryScroll = ({ setCurrentMode }) => {
             backgroundPosition: 'center'
           }}
         >
-          {/* Easter Egg */}
-          <EasterEggs gameId={game.id} />
-
+          {/* Memories Camera */}
+          <MemoriesCamera gameId={game.id} context="story" />
+          
           <div className="chapter-content">
             <div
               className="chapter-header clickable-title"
@@ -76,7 +76,7 @@ const StoryScroll = ({ setCurrentMode }) => {
       <section className="final-section">
         <div className="final-content">
           <h2>The Journey Continues</h2>
-          <p>More games, more memories, more brotherhood</p>
+          <p>Twenty years of gaming together</p>
           <div
             className="collection-link"
             onClick={handleShelfClick}

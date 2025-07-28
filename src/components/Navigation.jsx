@@ -14,12 +14,22 @@ const Navigation = ({ currentMode, setCurrentMode }) => {
     }
   };
 
+  const handleBrandClick = () => {
+    if (location.pathname === "/" && currentMode === "story") {
+      // Already in story view, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // Navigate to story view
+      handleModeChange("story");
+    }
+  };
+
   return (
     <nav className="navigation">
       <div className="nav-container">
         <motion.div
           className="nav-brand"
-          onClick={() => handleModeChange("story")}
+          onClick={handleBrandClick}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

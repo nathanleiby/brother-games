@@ -37,11 +37,13 @@ export const getLocationForYear = (person, year) => {
 
 // Get all locations where the group was during a game's timeframe
 export const getGroupLocationsForGame = (gameYear, yearRange = null) => {
+  console.log(`getGroupLocationsForGame called with gameYear: ${gameYear}, yearRange: ${yearRange}`);
   const people = ['nate', 'nick', 'mike'];
   const locations = new Set();
   
-  // If there's a year range, get locations for all years in that range
-  if (yearRange) {
+  // If there's a year range (contains a dash), get locations for all years in that range
+  if (yearRange && yearRange.includes('-')) {
+    console.log('Using year range logic');
     const [startYear, endYear] = yearRange.split('-').map(y => parseInt(y.trim()));
     for (let year = startYear; year <= endYear; year++) {
       people.forEach(person => {
@@ -51,13 +53,19 @@ export const getGroupLocationsForGame = (gameYear, yearRange = null) => {
     }
   } else {
     // Single year
+    console.log('Using single year logic');
+    const year = parseInt(gameYear);
+    console.log(`Parsed year: ${year}`);
     people.forEach(person => {
-      const location = getLocationForYear(person, gameYear);
+      const location = getLocationForYear(person, year);
+      console.log(`${person} in ${year}: ${location}`);
       if (location) locations.add(location);
     });
   }
   
-  return Array.from(locations);
+  const result = Array.from(locations);
+  console.log(`Final locations: ${result}`);
+  return result;
 };
 
 // Location mappings for legacy data
