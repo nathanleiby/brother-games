@@ -184,6 +184,150 @@ body {
   left: 0;
   right: 0;
   height: 4px;
+  background: #64ffda;
+  z-index: 100;
+  transform-origin: 0%;
+}
+
+/* Envelope and Letter Styles */
+.envelope-container {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.envelope {
+  width: 100%;
+  height: 100%;
+  background: #f4e8d0;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 2px solid #d4af37;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.envelope:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: #e8dcc0;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #d4af37;
+}
+
+.envelope-body {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f4e8d0;
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.envelope-address {
+  text-align: center;
+  color: #8b4513;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.to-line {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.from-line {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.letter-content {
+  width: 100%;
+  height: 100%;
+  background: #fefefe;
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(220, 220, 220, 0.3);
+  animation: letterAppear 0.6s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@keyframes letterAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.letter-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.letter-text {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.letter-signature {
+  margin-top: auto;
+  text-align: left;
+}
+
+.letter-closing {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.letter-names {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-left: 0;
+}
+
+/* Timeline Progress */
+.timeline-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
   background: linear-gradient(90deg, #64ffda, #00bcd4);
   z-index: 1001;
   transform-origin: 0%;

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { gamesData } from "../data/gamesData";
 import { getLocationEvents } from "../data/locationData";
 import MemoriesCamera from "../components/EasterEggs";
@@ -8,6 +9,7 @@ import LocationEvent from "../components/LocationEvent";
 const StoryScroll = ({ setCurrentMode }) => {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
+  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false);
 
   const sortedGames = [...gamesData].sort((a, b) => a.year - b.year);
   const locationEvents = getLocationEvents();
@@ -62,14 +64,36 @@ const StoryScroll = ({ setCurrentMode }) => {
     <div className="story-scroll">
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            Brother Games
-          </h1>
-          <p className="hero-subtitle">
-            20+ Years of Gaming Memories
-          </p>
-
+        <div className={`envelope-container ${isEnvelopeOpen ? 'opened' : ''}`}>
+          {/* Envelope */}
+          {!isEnvelopeOpen && (
+            <div className="envelope" onClick={() => setIsEnvelopeOpen(true)}>
+              <div className="envelope-flap"></div>
+              <div className="envelope-body">
+                <div className="envelope-address">
+                  <div className="to-line">To: Mike</div>
+                  <div className="from-line">From: Nate & Nick</div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Letter Content */}
+          {isEnvelopeOpen && (
+            <div className="letter-content">
+              <h1 className="letter-title">
+                Happy 50th, Mike!
+              </h1>
+              <p className="letter-text">
+                We thought it'd be fun to look back on 20+ years of gaming memories.
+                We've both been very happy to have this regular chance to hang out, no matter where we are in the world.
+              </p>
+              <div className="letter-signature">
+                <p className="letter-closing">Love,</p>
+                <p className="letter-names">Nate and Nick</p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
