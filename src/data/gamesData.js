@@ -205,13 +205,14 @@ const rawGamesData = [
     yearRange: "2016",
     platforms: ["PC", "Mobile"],
     memories: [],
+    screenshots: ["ascension.png"],
     tags: ["card-game", "strategy"],
     steamAppId: 320430,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/320430/header.jpg",
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/320430/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/320430/capsule_616x353.jpg",
-      screenshots: []
+      screenshots: ["ascension.png"]
     }
   },
   {
