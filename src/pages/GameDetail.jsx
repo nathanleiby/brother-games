@@ -112,21 +112,46 @@ const GameDetail = ({ setCurrentMode }) => {
               </div>
             </div>
 
-            {/* Additional Info */}
-            {(game.specialNote || game.playStyle) && (
-              <div className="additional-info">
-                {game.playStyle && (
-                  <div className="info-chip">
-                    <strong>Play Style:</strong> {game.playStyle}
+            {/* Memories and Screenshots */}
+            {(game.memories?.length > 0 || game.screenshots?.length > 0) && (
+              <div className="memories-section">
+                {game.memories?.length > 0 && (
+                  <div className="memories-card">
+                    <h4>Memories</h4>
+                    <ul className="memories-list">
+                      {game.memories.map((memory, index) => (
+                        <li key={index} className="memory-item">
+                          {memory}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
-                {game.specialNote && (
-                  <div className="info-chip">
-                    <strong>Note:</strong> {game.specialNote}
+                
+                {game.screenshots?.length > 0 && (
+                  <div className="screenshots-card">
+                    <h4>Screenshots</h4>
+                    <div className="screenshots-grid">
+                      {game.screenshots.map((screenshot, index) => (
+                        <div key={index} className="screenshot-item">
+                          <img 
+                            src={`${import.meta.env.BASE_URL}screenshots/${screenshot}`}
+                            alt={`${game.title} screenshot ${index + 1}`}
+                            loading="lazy"
+                            className="screenshot-image"
+                            onError={(e) => {
+                              console.error(`Failed to load screenshot: ${screenshot}`);
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             )}
+
           </div>
         </div>
 

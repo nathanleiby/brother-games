@@ -1,13 +1,14 @@
-export const gamesData = [
+import { getGroupLocationsForGame } from './locationData.js';
+
+// Raw games data without computed locations
+const rawGamesData = [
   {
     id: "diablo",
     title: "Diablo",
     year: 2004,
     platforms: ["PC"],
     memories: [],
-    locations: ["Boston", "Oakland"],
     tags: ["rpg", "co-op"],
-    description: "",
     headerImage: "https://wallpapers.com/images/high/diablo-2-resurrected-1920-x-1080-u7g88mkivn6a8tx4.webp",
     steamAppId: null,
     images: {
@@ -24,10 +25,8 @@ export const gamesData = [
     platforms: ["PC"],
     playStyle: "PBEM",
     memories: ["2004 holidays in person", "2005-2006 PBEM sessions"],
-    locations: ["Boston", "Oakland"],
     tags: ["strategy", "turn-based", "pbem"],
     specialNote: "Transitioned from in-person to play-by-email",
-    description: "From holidays in person to PBEM sessions",
     steamAppId: 2204130,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/2204130/header.jpg",
     images: {
@@ -43,9 +42,7 @@ export const gamesData = [
     platforms: ["iPhone", "Web"],
     playStyle: "PBEM",
     memories: [],
-    locations: ["Boston", "Oakland"],
     tags: ["strategy", "mobile", "pbem", "iphone"],
-    description: "Early mobile gaming with the first iPhone",
     headerImage: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png",
     steamAppId: null,
     images: { 
@@ -61,9 +58,7 @@ export const gamesData = [
     yearRange: "2008-2009",
     platforms: ["PC"],
     memories: [],
-    locations: ["Boston", "Oakland"],
     tags: ["rpg", "d&d", "co-op"],
-    description: "",
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg",
     steamAppId: 704450,
     images: { 
@@ -78,9 +73,7 @@ export const gamesData = [
     year: 2010,
     platforms: ["PC"],
     memories: [],
-    locations: ["Boston", "Oakland"],
     tags: ["fps", "co-op", "zombies", "survival"],
-    description: "",
     steamAppId: 500,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/500/header.jpg",
     images: {
@@ -96,9 +89,7 @@ export const gamesData = [
     yearRange: "2011, 2014",
     platforms: ["PC"],
     memories: ["November 2014 email subject 'Risk of Rain'"],
-    locations: ["Durham", "SF"],
     tags: ["roguelike", "co-op", "challenging"],
-    description: "",
     steamAppId: 248820,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/248820/header.jpg",
     images: {
@@ -114,9 +105,7 @@ export const gamesData = [
     yearRange: "2012-2013",
     platforms: ["PC"],
     memories: ["Trying to share an epic weapon and accidentally throwing it off the edge of the world"],
-    locations: ["Durham", "SF"],
     tags: ["fps", "co-op", "loot"],
-    description: "",
     steamAppId: 8980,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/8980/header.jpg",
     images: {
@@ -131,9 +120,7 @@ export const gamesData = [
     year: 2013,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["puzzle", "co-op", "platformer"],
-    description: "Enchanting cooperative puzzle-platforming",
     steamAppId: 35720,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/35720/header.jpg",
     images: {
@@ -148,9 +135,7 @@ export const gamesData = [
     year: 2014,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["stealth", "co-op", "heist"],
-    description: "Cooperative heisting at its most frantic",
     steamAppId: 113020,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/113020/header.jpg",
     images: {
@@ -165,9 +150,7 @@ export const gamesData = [
     year: 2015,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["rpg", "dungeon-crawler", "loot"],
-    description: "",
     steamAppId: 41500,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/41500/header.jpg",
     images: {
@@ -182,9 +165,7 @@ export const gamesData = [
     year: 2015,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["rpg", "dungeon-crawler", "co-op", "loot"],
-    description: "Improved cooperative dungeon crawling",
     steamAppId: 200710,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/200710/header.jpg",
     images: {
@@ -199,9 +180,7 @@ export const gamesData = [
     year: 2015,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["co-op", "action"],
-    description: "",
     steamAppId: 249990,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/249990/header.jpg",
     images: {
@@ -216,9 +195,7 @@ export const gamesData = [
     year: 2016,
     platforms: ["PC", "Mobile"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["card-game", "strategy"],
-    description: "",
     steamAppId: 320430,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/320430/header.jpg",
     images: {
@@ -233,9 +210,7 @@ export const gamesData = [
     year: 2016,
     platforms: ["PC"],
     memories: [],
-    locations: ["Durham", "SF"],
     tags: ["tower-defense", "fps", "co-op", "strategy"],
-    description: "Unique blend of tower defense and FPS action",
     steamAppId: 210770,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/210770/header.jpg",
     images: {
@@ -251,31 +226,12 @@ export const gamesData = [
     yearRange: "2014, 2016-2017",
     platforms: ["PC"],
     memories: ["Trying to share an epic weapon and accidentally throwing it off the edge of the world"],
-    locations: ["Durham", "SF"],
     tags: ["fps", "co-op", "loot", "sequel"],
-    description: "",
     steamAppId: 49520,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/49520/header.jpg",
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/49520/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/49520/capsule_616x353.jpg",
-      screenshots: []
-    }
-  },
-  {
-    id: "sanctum",
-    title: "Sanctum",
-    year: 2017,
-    platforms: ["PC"],
-    memories: [],
-    locations: ["SF", "Seattle"],
-    tags: ["tower-defense", "fps", "co-op"],
-    description: "The original tower defense shooter",
-    steamAppId: 91600,
-    headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/91600/header.jpg",
-    images: {
-      header: "https://cdn.akamai.steamstatic.com/steam/apps/91600/header.jpg",
-      capsule: "https://cdn.akamai.steamstatic.com/steam/apps/91600/capsule_616x353.jpg",
       screenshots: []
     }
   },
@@ -286,9 +242,7 @@ export const gamesData = [
     yearRange: "2017-2018",
     platforms: ["PC"],
     memories: [],
-    locations: ["SF", "Seattle"],
     tags: ["roguelike", "tower-defense", "co-op"],
-    description: "Unique roguelike tower defense combination",
     steamAppId: 249050,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/249050/header.jpg",
     images: {
@@ -303,16 +257,15 @@ export const gamesData = [
     year: 2019,
     yearRange: "2019-2020", 
     platforms: ["PC"],
-    memories: [],
-    locations: ["SF", "Seattle"],
+    memories: ["Victory screenshot"],
+    screenshots: ["factorio-victory-hq.png"],
     tags: ["strategy", "automation", "obsession", "wiki"],
-    description: "The game that consumed our lives with factory optimization",
     steamAppId: 427520,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg",
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/427520/capsule_616x353.jpg",
-      screenshots: []
+      screenshots: ["factorio-victory-hq.png"]
     }
   },
   {
@@ -322,9 +275,7 @@ export const gamesData = [
     yearRange: "2020-2021",
     platforms: ["PC"],
     memories: [],
-    locations: ["SF", "Seattle"],
     tags: ["rpg", "strategy", "co-op", "tabletop"],
-    description: "",
     steamAppId: 527230,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/527230/header.jpg",
     images: {
@@ -334,14 +285,29 @@ export const gamesData = [
     }
   },
   {
+    id: "fumbbl-blood-bowl",
+    title: "FUMBBL Blood Bowl",
+    year: 2020,
+    platforms: ["Web"],
+    playStyle: "Turn-based",
+    memories: ["League highlights spreadsheet"],
+    screenshots: ["fumbbl-highlights.png"],
+    tags: ["strategy", "turn-based", "fantasy", "sports"],
+    steamAppId: null,
+    headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/236690/header.jpg",
+    images: {
+      header: "https://cdn.akamai.steamstatic.com/steam/apps/236690/header.jpg",
+      capsule: "https://cdn.akamai.steamstatic.com/steam/apps/236690/capsule_616x353.jpg",
+      screenshots: ["fumbbl-highlights.png"]
+    }
+  },
+  {
     id: "wildermyth",
     title: "Wildermyth",
     year: 2021,
     platforms: ["PC"],
     memories: [],
-    locations: ["SF", "Seattle"],
     tags: ["rpg", "storytelling", "procedural"],
-    description: "Beautiful procedural storytelling RPG",
     steamAppId: 763890,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/763890/header.jpg",
     images: {
@@ -355,16 +321,32 @@ export const gamesData = [
     title: "Dying Light",
     year: 2022,
     platforms: ["PC"],
-    memories: [],
-    locations: ["Seattle"],
+    memories: ["Sniping this boss from above and lighting him on fire to avoid the fight"],
+    screenshots: ["dying-light-boss.png"],
     tags: ["survival", "zombies", "parkour", "co-op"],
-    description: "Intense zombie survival with parkour elements",
     steamAppId: 239140,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/239140/header.jpg",
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/239140/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/239140/capsule_616x353.jpg",
-      screenshots: []
+      screenshots: ["dying-light-boss.png"]
+    }
+  },
+  {
+    id: "slice-n-dice",
+    title: "Slice n Dice",
+    year: 2022,
+    yearRange: "2022-2024",
+    platforms: ["Mobile", "PC"],
+    memories: ["Victory screenshots starting with easy wins", "Email thread from 2022-10-18"],
+    screenshots: ["slice-n-dice-victory.png"],
+    tags: ["strategy", "dice", "roguelike", "mobile"],
+    steamAppId: null,
+    headerImage: "https://images.igdb.com/igdb/image/upload/t_1080p/co2lbd.webp",
+    images: {
+      header: "https://images.igdb.com/igdb/image/upload/t_1080p/co2lbd.webp",
+      capsule: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lbd.webp",
+      screenshots: ["slice-n-dice-victory.png"]
     }
   },
   {
@@ -374,9 +356,7 @@ export const gamesData = [
     yearRange: "2023-2024",
     platforms: ["PC"],
     memories: ["Reading wikis together"],
-    locations: ["Seattle"],
     tags: ["sandbox", "building", "wiki", "exploration"],
-    description: "Professional wiki researchers",
     steamAppId: 105600,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
     images: {
@@ -391,9 +371,7 @@ export const gamesData = [
     year: 2024,
     platforms: ["PC"],
     memories: [],
-    locations: ["Seattle"],
     tags: ["rpg", "tactical", "campaign", "complex"],
-    description: "Deep tactical RPG with persistent campaign",
     steamAppId: 780290,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/780290/header.jpg",
     images: {
@@ -409,15 +387,14 @@ export const gamesData = [
     yearRange: "2024-2025",
     platforms: ["PC"],
     memories: ["Photo shoots", "Bicycle riding adventures", "Swedish robot hunting"],
-    locations: ["Seattle"],
+    screenshots: ["generation-zero-bikes-1.png", "generation-zero-bikes-2.png"],
     tags: ["fps", "survival", "photography", "sweden"],
-    description: "Swedish robot hunting with photography sessions",
     steamAppId: 704270,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/704270/header.jpg",
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/704270/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/704270/capsule_616x353.jpg",
-      screenshots: []
+      screenshots: ["generation-zero-bikes-1.png", "generation-zero-bikes-2.png"]
     }
   },
   {
@@ -426,9 +403,7 @@ export const gamesData = [
     year: 2025,
     platforms: ["PC"],
     memories: ["Top-down alien combat", "Team coordination"],
-    locations: ["Seattle"],
     tags: ["co-op", "aliens", "top-down", "team-based"],
-    description: "Cooperative alien extermination action",
     steamAppId: 563560,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/563560/header.jpg",
     images: {
@@ -443,9 +418,7 @@ export const gamesData = [
     year: 2025,
     platforms: ["PC"],
     memories: [],
-    locations: ["Seattle"],
     tags: ["survival", "terraforming", "crafting", "space"],
-    description: "",
     steamAppId: 1284190,
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/1284190/header.jpg",
     images: {
@@ -453,8 +426,30 @@ export const gamesData = [
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/1284190/capsule_616x353.jpg",
       screenshots: []
     }
+  },
+  {
+    id: "barotrauma",
+    title: "Barotrauma",
+    year: 2021,
+    platforms: ["PC"],
+    memories: ["Submarine survival chaos", "Discord coordination attempts"],
+    screenshots: ["barotrauma-1.png", "barotrauma-2.png"],
+    tags: ["co-op", "submarine", "survival", "chaotic"],
+    steamAppId: 602960,
+    headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/602960/header.jpg",
+    images: {
+      header: "https://cdn.akamai.steamstatic.com/steam/apps/602960/header.jpg",
+      capsule: "https://cdn.akamai.steamstatic.com/steam/apps/602960/capsule_616x353.jpg",
+      screenshots: ["barotrauma-1.png", "barotrauma-2.png"]
+    }
   }
 ];
+
+// Add computed locations to each game
+export const gamesData = rawGamesData.map(game => ({
+  ...game,
+  locations: getGroupLocationsForGame(game.year, game.yearRange)
+}));
 
 // Helper functions for filtering and sorting
 export const filterGames = (games, filters) => {

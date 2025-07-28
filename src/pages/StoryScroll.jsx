@@ -30,10 +30,6 @@ const StoryScroll = ({ setCurrentMode }) => {
           <p className="hero-subtitle">
             A 20+ year journey through gaming memories
           </p>
-          <p className="hero-description">
-            From Diablo in 2004 to today, explore the games that shaped our
-            brotherhood
-          </p>
 
         </div>
       </section>
@@ -60,9 +56,9 @@ const StoryScroll = ({ setCurrentMode }) => {
         >
           {/* Easter Egg */}
           <EasterEggs gameId={game.id} />
-          
+
           <div className="chapter-content">
-            <div 
+            <div
               className="chapter-header clickable-title"
               onClick={() => handleGameClick(game.id)}
             >
