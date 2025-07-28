@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "motion/react";
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { gamesData } from "../data/gamesData";
@@ -119,40 +120,26 @@ const StoryScroll = ({ setCurrentMode }) => {
             <div key={`game-${game.id}`} id={`game-${game.id}`}>
             <section
               className="game-chapter"
-              style={{
-                backgroundImage: game.headerImage ? `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${game.headerImage})` : undefined,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
             >
-              {/* Memories Camera */}
-              <MemoriesCamera gameId={game.id} context="story" />
-
-              <div className="chapter-content">
-                <div
-                  className="chapter-header clickable-title"
-                  onClick={() => handleGameClick(game.id)}
-                >
-                  <h2 className="game-title">{game.title}</h2>
-                  <div className="game-meta">
-                    <span className="year">{game.year}</span>
-                  </div>
-                </div>
+              <div 
+                className="chapter-content"
+                style={{
+                  '--hero-image': game.headerImage ? `url(${game.headerImage})` : undefined
+                }}
+                onClick={() => handleGameClick(game.id)}
+                role="button"
+                tabIndex={0}
+              >
+              </div>
+              <div className="chapter-title-row">
+                <h3 className="chapter-title">{game.title} ({game.year})</h3>
+                <MemoriesCamera gameId={game.id} context="story" />
               </div>
             </section>
             </div>
           );
         }
 
-        // Add spacer between consecutive games
-        const nextItem = timelineItems[index + 1];
-        if (nextItem &&
-            item.type !== 'location_group' &&
-            nextItem.type !== 'location_group') {
-          elements.push(
-            <div key={`spacer-${index}`} className="timeline-spacer"></div>
-          );
-        }
 
         return elements;
       }).flat()}

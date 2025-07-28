@@ -164,7 +164,7 @@ const GameDetail = ({ setCurrentMode }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          View in Story Mode
+          View in Timeline
         </motion.button>
       </div>
     </motion.div>

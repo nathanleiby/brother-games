@@ -113,6 +113,8 @@ const MemoriesCamera = ({ gameId, onMemoriesOpen, context = "default" }) => {
                         src={`${import.meta.env.BASE_URL}screenshots/${carouselItems[currentIndex].content}`}
                         alt={`${game.title} screenshot ${currentIndex + 1}`}
                         className="carousel-image"
+                        loading="eager"
+                        decoding="async"
                         onError={(e) => {
                           console.error(`Failed to load screenshot: ${carouselItems[currentIndex].content}`);
                           e.target.style.display = 'none';

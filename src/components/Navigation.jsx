@@ -55,7 +55,7 @@ const Navigation = ({ currentMode, setCurrentMode }) => {
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2 }}
             >
-              Story
+              Timeline
             </motion.button>
           )}
         </div>

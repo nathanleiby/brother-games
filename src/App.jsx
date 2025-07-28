@@ -5,7 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 // Components
@@ -18,10 +18,23 @@ import BrotherhoodStats from "./components/BrotherhoodStats";
 // Hooks
 import { useKonamiCode } from "./hooks/useKonamiCode";
 
+// Utils
+import { preloadScreenshots } from "./utils/imagePreloader";
+
 function App() {
   const [currentMode, setCurrentMode] = useState("story");
   const [showBrotherhoodStats, setShowBrotherhoodStats] = useState(false);
   const konamiUnlocked = useKonamiCode();
+
+  // Preload all screenshots after initial render
+  useEffect(() => {
+    // Delay preloading to avoid blocking initial page load
+    const timer = setTimeout(() => {
+      preloadScreenshots();
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // Show Brotherhood Stats when Konami code is entered
   if (konamiUnlocked && !showBrotherhoodStats) {
