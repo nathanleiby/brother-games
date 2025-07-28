@@ -67,7 +67,9 @@ const StoryScroll = ({ setCurrentMode }) => {
             Brother Games
           </h1>
           <p className="hero-subtitle">
-            20+ Years of Gaming Memories
+          Happy 50th, Mike! We thought it'd be fun to look back on 20+ years of gaming memories. 
+          We've both been very happy to have this regular chance to hang out, no matter where we are in the world.
+          Love, Nate and Nick
           </p>
 
         </div>
