@@ -25,7 +25,8 @@ const rawGamesData = [
     yearRange: "2004-2006",
     platforms: ["PC"],
     playStyle: "PBEM",
-    memories: ["2004 holidays in person", "In 2005-2006 we played by email, sending over 100 emails with attached *.sav files"],
+    memories: ["Hacky oldschool setups...", "In 2005-2006 we played by email, sending over 100 emails with attached *.sav files"],
+    screenshots: ["alpha-centauri-hacky-setup.png", "alpha-centauri-play-by-email.png"],
     tags: ["strategy", "turn-based", "pbem"],
     specialNote: "Transitioned from in-person to play-by-email",
     steamAppId: 2204130,
@@ -33,7 +34,7 @@ const rawGamesData = [
     images: {
       header: "https://cdn.akamai.steamstatic.com/steam/apps/2204130/header.jpg",
       capsule: "https://cdn.akamai.steamstatic.com/steam/apps/2204130/capsule_616x353.jpg",
-      screenshots: []
+      screenshots: ["alpha-centauri-hacky-setup.png", "alpha-centauri-play-by-email.png"],
     }
   },
   {
@@ -47,10 +48,10 @@ const rawGamesData = [
     tags: ["strategy", "mobile", "pbem", "iphone"],
     headerImage: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png",
     steamAppId: null,
-    images: { 
-      header: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png", 
-      capsule: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png", 
-      screenshots: [] 
+    images: {
+      header: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png",
+      capsule: "https://www.geeked.info/wp-content/uploads/2008/11/weewarbattle.png",
+      screenshots: []
     }
   },
   {
@@ -63,10 +64,10 @@ const rawGamesData = [
     tags: ["rpg", "d&d", "co-op"],
     headerImage: "https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg",
     steamAppId: 704450,
-    images: { 
-      header: "https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg", 
-      capsule: "https://cdn.akamai.steamstatic.com/steam/apps/704450/capsule_616x353.jpg", 
-      screenshots: [] 
+    images: {
+      header: "https://cdn.akamai.steamstatic.com/steam/apps/704450/header.jpg",
+      capsule: "https://cdn.akamai.steamstatic.com/steam/apps/704450/capsule_616x353.jpg",
+      screenshots: []
     }
   },
   {
@@ -265,7 +266,7 @@ const rawGamesData = [
     id: "factorio",
     title: "Factorio",
     year: 2019,
-    yearRange: "2019-2020", 
+    yearRange: "2019-2020",
     platforms: ["PC"],
     memories: ["Victory!"],
     screenshots: ["factorio-victory-hq.png"],

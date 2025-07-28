@@ -83,3 +83,24 @@ export const locationMappings = {
 export const normalizeLocation = (location) => {
   return locationMappings[location] || location;
 };
+
+// Get all location change events for the timeline
+export const getLocationEvents = () => {
+  const events = [];
+  
+  Object.entries(locationHistory).forEach(([person, history]) => {
+    history.forEach(period => {
+      if (period.startYear) {
+        events.push({
+          year: period.startYear,
+          type: 'location_change',
+          person: person.charAt(0).toUpperCase() + person.slice(1),
+          location: period.location,
+          id: `${person}-${period.startYear}-${period.location}`
+        });
+      }
+    });
+  });
+  
+  return events.sort((a, b) => a.year - b.year);
+};
