@@ -34,7 +34,6 @@ const Navigation = ({ currentMode, setCurrentMode }) => {
           whileTap={{ scale: 0.95 }}
         >
           <h1>Brother Games</h1>
-          <span className="subtitle">20+ Years of Gaming Memories</span>
         </motion.div>
 
         <div className="nav-modes">

@@ -11,28 +11,28 @@ const StoryScroll = ({ setCurrentMode }) => {
 
   const sortedGames = [...gamesData].sort((a, b) => a.year - b.year);
   const locationEvents = getLocationEvents();
-  
+
   // Merge games and location events, sorted by year
-  const allItems = [...sortedGames.map(game => ({ ...game, type: 'game' })), 
+  const allItems = [...sortedGames.map(game => ({ ...game, type: 'game' })),
                     ...locationEvents].sort((a, b) => a.year - b.year);
-  
+
   // Group adjacent location events by year
   const timelineItems = [];
   let i = 0;
   while (i < allItems.length) {
     const item = allItems[i];
-    
+
     if (item.type === 'location_change') {
       // Look for other location changes in the same year
       const sameYearMoves = [item];
       let j = i + 1;
-      while (j < allItems.length && 
-             allItems[j].type === 'location_change' && 
+      while (j < allItems.length &&
+             allItems[j].type === 'location_change' &&
              allItems[j].year === item.year) {
         sameYearMoves.push(allItems[j]);
         j++;
       }
-      
+
       // Add combined or single location event
       timelineItems.push({
         type: 'location_group',
@@ -40,7 +40,7 @@ const StoryScroll = ({ setCurrentMode }) => {
         events: sameYearMoves,
         id: `location-${item.year}-${sameYearMoves.map(e => e.person).join('-')}`
       });
-      
+
       i = j;
     } else {
       timelineItems.push(item);
@@ -67,7 +67,7 @@ const StoryScroll = ({ setCurrentMode }) => {
             Brother Games
           </h1>
           <p className="hero-subtitle">
-            Across 20 years and a lot of distance, we've played a lot of games together and kept in touch...
+            20+ Years of Gaming Memories
           </p>
 
         </div>
@@ -85,7 +85,7 @@ const StoryScroll = ({ setCurrentMode }) => {
       {/* Timeline Items */}
       {timelineItems.map((item, index) => {
         const elements = [];
-        
+
         if (item.type === 'location_group') {
           elements.push(<LocationEvent key={item.id} events={item.events} />);
         } else {
@@ -103,7 +103,7 @@ const StoryScroll = ({ setCurrentMode }) => {
             >
               {/* Memories Camera */}
               <MemoriesCamera gameId={game.id} context="story" />
-              
+
               <div className="chapter-content">
                 <div
                   className="chapter-header clickable-title"
@@ -119,17 +119,17 @@ const StoryScroll = ({ setCurrentMode }) => {
             </div>
           );
         }
-        
+
         // Add spacer between consecutive games
         const nextItem = timelineItems[index + 1];
-        if (nextItem && 
-            item.type !== 'location_group' && 
+        if (nextItem &&
+            item.type !== 'location_group' &&
             nextItem.type !== 'location_group') {
           elements.push(
             <div key={`spacer-${index}`} className="timeline-spacer"></div>
           );
         }
-        
+
         return elements;
       }).flat()}
 
@@ -137,7 +137,7 @@ const StoryScroll = ({ setCurrentMode }) => {
       <section className="final-section">
         <div className="final-content">
           <h2>The Journey Continues</h2>
-          <p>Twenty years of gaming together</p>
+          <p>Here's to many more games ahead!</p>
           <div
             className="collection-link"
             onClick={handleShelfClick}
